@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import dummyData from '../dummyData';
+import React from 'react';
+import { Link } from "react-router-dom";
+
 
 const MovieList = props => {
-  const [movies, setMovies] = useState(dummyData.movies);
-  console.log(movies);
-  
   return (
     <div className="movie-list">
-      {movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
+      {props.movies.movies.map(movie => (
+        <div key={movie.id}>
+          <Link to={`/movies/${movie.id}`}>
+            <MovieDetails key={movie.id} movie={movie} />
+          </Link>
+        </div>
       ))}
     </div>
   );
@@ -18,7 +20,7 @@ function MovieDetails({ movie }) {
   const { title, director, metascore, stars } = movie;
   return (
     <div className="movie-card">
-      <h2>{title}</h2>
+      <h2>Title: {title}</h2>
       <div className="movie-director">
         Director: <em>{director}</em>
       </div>
