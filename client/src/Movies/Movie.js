@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 
 const Movie = (props) => {
-  console.log(props);
+  const params = useParams();
   const [movie, setMovie] = useState();
- 
-  
+  const id = params.id;
+
+  useEffect(() => {
+    setMovie(props.movies.movies[id]);
+  },[]);
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = () => {
